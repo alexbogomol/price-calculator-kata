@@ -2,18 +2,18 @@ namespace PriceCalculatorKata
 {
 	using System;
 
-	public class Tax
+	public class Discount
 	{
 		private readonly int _percent;
 
-		public static Tax None => new Tax(0);
+		public static Discount None => new Discount(0);
 
-		public Tax(int percent)
+		public Discount(int percent)
 		{
 			if (percent < 0 || percent > 100)
 				throw new ArgumentOutOfRangeException(
 					nameof(percent), 
-					$"{nameof(Tax)} percentage should be in range [0..100]");
+					$"{nameof(Discount)} percentage should be in range [0..100]");
 
 			_percent = percent;
 

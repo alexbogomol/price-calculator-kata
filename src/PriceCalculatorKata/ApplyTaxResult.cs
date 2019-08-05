@@ -4,12 +4,12 @@ namespace PriceCalculatorKata
 
 	public class ApplyTaxResult
 	{
-		public ApplyTaxResult(Tax tax, Product product)
+		public ApplyTaxResult(Product product, Tax tax)
 		{
-			Tax = tax ?? throw new ArgumentNullException(nameof(tax));
 			Product = product ?? throw new ArgumentNullException(nameof(product));
+			Tax = tax ?? throw new ArgumentNullException(nameof(tax));
 
-			TaxAmount = product.Price * tax.Rate;
+			TaxAmount = product.Price * tax.Ratio;
 			PriceAfterTaxes = product.Price + TaxAmount;
 		}
 

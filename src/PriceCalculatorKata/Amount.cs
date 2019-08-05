@@ -2,9 +2,6 @@ namespace PriceCalculatorKata
 {
 	using System;
 
-	/// <summary>
-	/// to pay = price + tax - discount : amount of money
-	/// </summary>
 	public struct Amount
 	{
 		private readonly double _value;
@@ -15,12 +12,15 @@ namespace PriceCalculatorKata
 				nameof(value), 
 				"Amount cannot be negative");
 
-			_value = value;
+			_value = SetupPrecision(value);
 		}
 
-		public static Amount operator + (Amount x, Amount y) => new Amount(x._value + y._value);
-		public static Amount operator * (Amount x, double multiplier) => new Amount(x._value * multiplier);
+		private static double SetupPrecision(double raw) => Math.Round(raw, 2, MidpointRounding.AwayFromZero);
 
-		public override string ToString() => $"${_value:#.00}";
+		public static Amount operator + (Amount x, Amount y) => new Amount(x._value + y._value);
+		public static Amount operator - (Amount x, Amount y) => new Amount(x._value - y._value);
+		public static Amount operator * (Amount x, double multiplier) => new Amount(SetupPrecision(x._value * multiplier));
+
+		public override string ToString() => $"${_value:F}";
 	}
 }
