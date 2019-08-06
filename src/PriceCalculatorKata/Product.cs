@@ -21,4 +21,10 @@ namespace PriceCalculatorKata
 		public Amount Price { get; }
 		public int Upc { get; }
 	}
+
+	public static class ProductExtensions
+	{
+		public static string Describe(this Product product) =>
+			$"Book with name = “{product.Name}”, UPC={product.Upc}, price={product.Price}";
+	}
 }

@@ -2,9 +2,10 @@ namespace PriceCalculatorKata
 {
 	using System;
 
-	public class Tax
+	public class Tax : ICanAffectPrice
 	{
 		private readonly int _percent;
+		private readonly double _ratio;
 
 		public static Tax None => new Tax(0);
 
@@ -17,11 +18,10 @@ namespace PriceCalculatorKata
 
 			_percent = percent;
 
-			Ratio = (double) _percent / 100;
+			_ratio = (double) _percent / 100;
 		}
 
-		public double Ratio { get; }
-
 		public override string ToString() => $"{_percent}%";
+		public AffectPriceResult ApplyTo(Amount price) => AffectPriceResult.Increase(price, _ratio);
 	}
 }
