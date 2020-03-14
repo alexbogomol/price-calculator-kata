@@ -27,7 +27,7 @@ namespace PriceCalculatorKata.Tests
 
 			AffectPriceResult result = discount.ApplyTo(product.Price);
 
-			string expected = "Discount: rate = 10%, amount = $2.03. Price: before = $20.25, after = $18.22";
+			string expected = "Discount: rate = 10%, amount = $2.03. Price: before = $20.25, after = $18.23";
 
 			Assert.AreEqual(expected, result.DescribeWith(product, discount));
 		}
